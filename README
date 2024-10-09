@@ -40,14 +40,20 @@ Prerequisites
 * Snakemake: Workflow management system
 * Singularity: Containerization platform
 
-List of singularity images
-Ensure the following Singularity images are placed in the images/ directory:
-   * agat.sif
-   * gffread.sif
-   * mmseqs2.sif
-   * iprscan.sif
-   * hmmer3.sif
-   * sigtarp.sif
+## **Singularity Images**
+
+The necessary `.sif` and `.img` Singularity images are hosted on [Sylabs Cloud](https://cloud.sylabs.io/library/danifilho/functional_annotation_images). You can download them using the following commands:
+
+```bash
+singularity pull library://danifilho/functional_annotation_images/agat:latest -F images/agat.sif
+singularity pull library://danifilho/functional_annotation_images/gffread:latest -F images/gffread.sif
+singularity pull library://danifilho/functional_annotation_images/hmmer3:latest -F images/hmmer3.sif
+singularity pull library://danifilho/functional_annotation_images/iprscan:latest -F images/iprscan.sif
+singularity pull library://danifilho/functional_annotation_images/mmseqs2:latest -F images/mmseqs2.sif
+singularity pull library://danifilho/functional_annotation_images/multiloc2_v3:latest -F images/multiloc2_v3.img
+singularity pull library://danifilho/functional_annotation_images/samtools:latest -F images/samtools.sif
+singularity pull library://danifilho/functional_annotation_images/sigtarp:latest -F images/sigtarp.sif
+
 
 
 Dependencies
@@ -58,10 +64,21 @@ Dependencies
    * pandas
    * biopython
 * External Tools (via Singularity images):
+## **Direct Download Links**
+
+- [agat.sif](https://cloud.sylabs.io/library/danifilho/functional_annotation_images/agat:latest)
+- [gffread.sif](https://cloud.sylabs.io/library/danifilho/functional_annotation_images/gffread:latest)
+- [hmmer3.sif](https://cloud.sylabs.io/library/danifilho/functional_annotation_images/hmmer3:latest)
+- [iprscan.sif](https://cloud.sylabs.io/library/danifilho/functional_annotation_images/iprscan:latest)
+- [mmseqs2.sif](https://cloud.sylabs.io/library/danifilho/functional_annotation_images/mmseqs2:latest)
+- [multiloc2_v3.img](https://cloud.sylabs.io/library/danifilho/functional_annotation_images/multiloc2_v3:latest)
+- [samtools.sif](https://cloud.sylabs.io/library/danifilho/functional_annotation_images/samtools:latest)
+- [sigtarp.sif](https://cloud.sylabs.io/library/danifilho/functional_annotation_images/sigtarp:latest)
+
    * AGAT v1.4.0
    * gffread 0.12.7
-   * MMseqs2 
-   * InterProScan
+   * MMseqs2 15.6
+   * InterProScan 5.59
    * HMMER 3.3
    * SignalP 5.0b
    * TargetP 2.0
