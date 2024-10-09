@@ -1,0 +1,26 @@
+#Here is the file where the changes need to happen. 
+
+#Volume name should be your work directory. Inside this directory we can find the Snakefile, the config.yaml file and all the other folders.
+volume_name: /home/guadirla/BASF/Arabipdosis_Thaliana/functional_annotation/snakefile/last
+
+#The name of your fasta file without the path or quotes
+fasta_file: file1.Col-PEK1.5_Chr1-5_20220523.fasta
+
+#Please keep the following formatting. The first database (ncbi) is mandatory for obtaining the NCBI description
+mmseqs_databases:
+  - name: 'ncbi'
+    path: 'databases/current/GenomesDatabase.v1.prot'
+    ncbidata: 'databases/current/GenomesDatabase.v1.prot'  # The .prot file
+  - name: 'uniref'
+    path: 'databases/mmseqs_db/uniref50'
+  # Add other databases as needed
+
+#This is basically the output of the structural annotation problem, is a gff file
+final_filtering_gff: AraTh.v2.gff
+
+#This is just for the multiloc rule, please don't change unless is on purpose
+multiloc_script: ml2_one_by_one.sh
+
+#The species name will determine the name of your outputs
+species_name: file1.Col-PEK1.5_Chr1-5_20220523
+
