@@ -1,0 +1,148 @@
+Functional Annotation Pipeline
+This pipeline is designed to perform comprehensive functional annotation of genomic data, specifically focusing on proteins. It integrates various bioinformatics tools to predict protein functions, domains, subcellular localization, and other important features.
+
+Table of Contents
+* Overview
+* Features
+* Installation
+* Dependencies
+* Input Files
+* Configuration
+* Usage
+* Pipeline Workflow
+* Output Files
+* Troubleshooting
+* Acknowledgments
+* License
+* Contact
+
+Overview
+The functional annotation pipeline automates the process of annotating proteins from genomic data. By integrating tools like MMseqs2, InterProScan, HMMER, SignalP, TargetP, and MultiLoc2, it provides a streamlined workflow for:
+* Filtering and processing GFF files
+* Extracting protein and coding sequences
+* Searching protein databases for homologs
+* Predicting protein domains and functions
+* Determining subcellular localization
+* Identifying signal peptides and targeting signals
+* Merging all annotations into a comprehensive report
+
+Features
+* Automated Workflow: Utilizes Snakemake for workflow management.
+* Containerized Tools: Employs Singularity containers for reproducibility.
+* Customizable: Configurable via a YAML file.
+* Scalable: Supports multithreading and parallel processing.
+* Comprehensive Output: Generates a detailed TSV file with annotations.
+
+Prerequisites
+* Operating System: Linux (preferred for Singularity support)
+* Python: Version 3.6 or higher
+* Conda: For managing environments
+* Snakemake: Workflow management system
+* Singularity: Containerization platform
+
+List of singularity images
+Ensure the following Singularity images are placed in the images/ directory:
+   * agat.sif
+   * gffread.sif
+   * mmseqs2.sif
+   * iprscan.sif
+   * hmmer3.sif
+   * sigtarp.sif
+
+
+Dependencies
+* Software:
+   * Snakemake
+   * Singularity
+* Python Packages:
+   * pandas
+   * biopython
+* External Tools (via Singularity images):
+   * AGAT v1.4.0
+   * gffread 0.12.7
+   * MMseqs2 
+   * InterProScan
+   * HMMER 3.3
+   * SignalP 5.0b
+   * TargetP 2.0
+   * MultiLoc2 3.0
+
+Input Files
+Place the following input files in the inputs/ directory:
+* Genome FASTA File: e.g., genome.fasta
+* GFF Annotation File: e.g., annotations.gff
+* Custom Scripts: Place functional_merge.py and multiloc_script.py in the scripts/ directory.
+
+Configuration
+Create a config.yaml file in the root directory with the following content:
+yaml
+species_name: "your_species_name"
+volume_name: "/absolute/path/to/your/working/directory"
+fasta_file: "genome.fasta"
+final_filtering_gff: "annotations.gff"
+multiloc_script: "multiloc_script.py"
+mmseqs_databases:
+  - name: "database1"
+    path: "/absolute/path/to/databases/database1"
+  - name: "ncbi"
+    Path: "ncbincbidata: "/absolute/path/to/ncbi_data_file.prot"
+
+
+Important: Use absolute paths for volume_name and database paths.
+Usage
+
+Running the Pipeline
+snakemake --cores <number_of_cores> --use-singularity
+Replace <number_of_cores> with the number of CPU cores available.
+
+Dry Run
+To perform a dry run and check the workflow:
+snakemake -n
+
+
+Cleaning Up
+To clean up all generated files:
+snakemake clean
+
+
+Pipeline Workflow
+The pipeline consists of the following rules (steps):
+1. All: Specifies the final output.
+2. AGAT: Filters the GFF file to keep the longest isoform.
+3. GFFRead: Extracts protein (AA) and coding sequences (CDS).
+4. MMseqs2: Searches protein sequences against specified databases.
+5. Best Hits: Extracts the best hit from MMseqs2 outputs.
+6. InterProScan: Performs functional annotation.
+7. Protein List Generation: Prepares inputs for MultiLoc2.
+8. MultiLoc2: Predicts subcellular localization.
+9. HMMER: Identifies protein domains using Pfam-A.
+10. SignalP and TargetP: Predicts signal peptides and targeting signals.
+11. Generate TSV: Merges all annotations into a TSV file.
+
+Output Files
+All output files are placed in their respective directories:
+* AGAT Output: agat_outputs/
+* GFFRead Output: gff_read_output/
+* MMseqs2 Output: mmseqs_output/
+* InterProScan Output: iprscan_output/
+* MultiLoc2 Output: multiloc_outputs/
+* HMMER Output: hmmer_outputs/
+* SignalP and TargetP Output: sigtarp_outputs/
+* Final Annotation File: functional_outputs/functional_annotation.tsv
+
+Troubleshooting
+* Singularity Issues: Ensure that paths in config.yaml are absolute and that Singularity has the necessary permissions.
+* File Not Found Errors: Verify that all input files and databases are correctly placed and paths are accurate.
+* Resource Limitations: Adjust --cores based on your system's capabilities.
+* Permission Errors: Check file and directory permissions, especially when writing outputs.
+
+Acknowledgments
+This pipeline utilizes open-source tools and databases. We acknowledge the developers and maintainers of these resources.
+* AGAT
+* gffread
+* MMseqs2
+* InterProScan
+* HMMER
+* SignalP
+* TargetP
+* MultiLoc2
