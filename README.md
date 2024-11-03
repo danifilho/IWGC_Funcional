@@ -212,6 +212,30 @@ All output files are placed in their respective directories:
 - **SignalP and TargetP Output**: `sigtarp_outputs/`
 - **Final Annotation File**: `functional_outputs/functional_annotation.tsv`
 
+- Output Structure:
+ID sequence: The unique identifier for each gene.
+
+NCBI DESCRIPTION: Description of the gene from the NCBI database.
+
+NCBI Subject; E-value; Bit score: NCBI annotation details, including the subject identifier, E-value, and bit score for the gene.
+
+Other MMseqs database columns (dynamic): Each additional MMseqs database used in the analysis will have a set of columns named {Database} Subject; E-value; Bit score, containing the corresponding annotation details for that database.
+
+SignalP Pos; Pr: SignalP data with position and prediction probability.
+
+TargetP Prediction; noTP; SP; mTP; cTP; luTP; CS Position: TargetP data with localization prediction and position details.
+
+MULTILOC: MultiLoc localization prediction.
+
+IPRSCAN GO: Gene Ontology (GO) terms from IPRScan.
+
+IPRSCAN IPR: InterPro (IPR) annotations from IPRScan.
+
+Hmmer Pfam: Pfam domain annotations from HMMER.
+
+Description
+The TSV file is a comprehensive summary of gene annotations, dynamically incorporating columns for multiple MMseqs databases. Each row represents one gene, integrating data from several annotation sources (NCBI, SignalP, TargetP, MultiLoc, IPRScan, and HMMER), providing a unified view of functional characteristics across databases.
+
 ## Troubleshooting
 
 - **Singularity Issues**: Ensure that paths in `config.yaml` are absolute and that Singularity has the necessary permissions.
