@@ -234,16 +234,13 @@ This pipeline utilizes open-source tools and databases. We acknowledge the devel
 
 ## License
 
-[MIT License](LICENSE)
+(LICENSE)
 
 ## Contact
 
 For any questions or issues, please contact:
 
-- **Your Name**
-- **Email**: your.email@example.com
-- **GitHub**: [yourusername](https://github.com/yourusername)
+- **idk yet what to put here**
+- **Email**: email@example.com
+- **GitHub**: [username](https://github.com/username)
 
----
-
-**Note**: Replace placeholders like `your_species_name`, `yourusername`, and `your.email@example.com` with your actual details.
