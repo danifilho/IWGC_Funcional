@@ -7,7 +7,7 @@ This pipeline is designed to perform comprehensive functional annotation of geno
 - [Overview](#overview)
 - [Features](#features)
 - [Prerequisites](#prerequisites)
-- [Installation](#installation)
+- [Setup](#setup)
 - [Dependencies](#dependencies)
 - [Input Files](#input-files)
 - [Configuration](#configuration)
@@ -59,11 +59,14 @@ singularity pull samtools.sif library://danifilho/functional_annotation_images/s
 singularity pull sigtarp.sif library://danifilho/functional_annotation_images/sigtarp:latest
 ```
 
-## Installation
+## Setup
 
-**Ensure Singularity is installed**:
-
-   - Install Singularity following the official [Singularity Installation Guide](https://sylabs.io/guides/3.0/user-guide/installation.html).
+Basically, to run the structural annotation step you need:
+- One config.yaml file, with your variables and inputs
+- One Snakefile
+- One "inputs" folder, with the genome in .fasta format, the .faa protein file and SMRT Pacbio RNA reads (usually .fastq)
+- One "scripts" folder, with the following scripts: maker_control_files, validate_gff.py, renameGff.py, and gff_filter.py
+- One "images" folder, with all the above singularity images. 
 
 ## Dependencies
 
@@ -117,52 +120,7 @@ snakemake --cores <number_of_cores> --use-singularity
 
 Replace `<number_of_cores>` with the number of CPU cores available.
 
-### Dry Run
-
-To perform a dry run and check the workflow:
-
-```bash
-snakemake -n
-```
-
-### Cleaning Up
-
-To clean up all generated files:
-
-```bash
-snakemake clean
-```
-
-## Pipeline Workflow
-
-The pipeline consists of the following steps:
-
-1. **All**: Specifies the final output.
-2. **AGAT**: Filters the GFF file to keep the longest isoform.
-3. **GFFRead**: Extracts protein (AA) and coding sequences (CDS).
-4. **MMseqs2**: Searches protein sequences against specified databases.
-5. **Best Hits**: Extracts the best hit from MMseqs2 outputs.
-6. **InterProScan**: Performs functional annotation.
-7. **Protein List Generation**: Prepares inputs for MultiLoc2.
-8. **MultiLoc2**: Predicts subcellular localization.
-9. **HMMER**: Identifies protein domains using Pfam-A.
-10. **SignalP and TargetP**: Predicts signal peptides and targeting signals.
-11. **Generate TSV**: Merges all annotations into a TSV file.
-
-## Output Files
-
-All output files are placed in their respective directories:
-
-- **AGAT Output**: `agat_outputs/`
-- **GFFRead Output**: `gff_read_output/`
-- **MMseqs2 Output**: `mmseqs_output/`
-- **InterProScan Output**: `iprscan_output/`
-- **MultiLoc2 Output**: `multiloc_outputs/`
-- **HMMER Output**: `hmmer_outputs/`
-- **SignalP and TargetP Output**: `sigtarp_outputs/`
-- **Final Annotation File**: `functional_outputs/functional_annotation.tsv`
-
-- Output Structure:
+## Output Structure:
 ID sequence: The unique identifier for each gene.
 
 NCBI DESCRIPTION: Description of the gene from the NCBI database.
@@ -193,19 +151,6 @@ The TSV file is a comprehensive summary of gene annotations, dynamically incorpo
 - **Resource Limitations**: Adjust `--cores` based on your system's capabilities.
 - **Permission Errors**: Check file and directory permissions, especially when writing outputs.
 
-## Acknowledgments
-
-This pipeline utilizes open-source tools and databases. We acknowledge the developers and maintainers of these resources:
-
-- **AGAT**
-- **gffread**
-- **MMseqs2**
-- **InterProScan**
-- **HMMER**
-- **SignalP**
-- **TargetP**
-- **MultiLoc2**
-
 ## License
 
 (LICENSE)
@@ -214,7 +159,6 @@ This pipeline utilizes open-source tools and databases. We acknowledge the devel
 
 For any questions or issues, please contact:
 
-- **idk yet what to put here**
-- **Email**: email@example.com
-- **GitHub**: [username](https://github.com/username)
+- **Email**: dasilvaf@msu.edu
+- **GitHub**: [danifilho](https://github.com/danifilho)
 
