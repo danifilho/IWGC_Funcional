@@ -4,6 +4,7 @@ This pipeline is designed to perform comprehensive functional annotation of geno
 
 ## Table of Contents
 
+- [Overview](#overview)
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
@@ -48,56 +49,21 @@ The Functional Annotation Pipeline automates the process of annotating proteins 
 The necessary `.sif` and `.img` Singularity images are hosted on [Sylabs Cloud](https://cloud.sylabs.io/library/danifilho/functional_annotation_images). You can download them using the following commands:
 
 ```bash
-singularity pull library://danifilho/functional_annotation_images/agat:latest -F images/agat.sif
-singularity pull library://danifilho/functional_annotation_images/gffread:latest -F images/gffread.sif
-singularity pull library://danifilho/functional_annotation_images/hmmer3:latest -F images/hmmer3.sif
-singularity pull library://danifilho/functional_annotation_images/iprscan:latest -F images/iprscan.sif
-singularity pull library://danifilho/functional_annotation_images/mmseqs2:latest -F images/mmseqs2.sif
-singularity pull library://danifilho/functional_annotation_images/multiloc2_v3:latest -F images/multiloc2_v3.img
-singularity pull library://danifilho/functional_annotation_images/samtools:latest -F images/samtools.sif
-singularity pull library://danifilho/functional_annotation_images/sigtarp:latest -F images/sigtarp.sif
+singularity pull agat.sif library://danifilho/functional_annotation_images/agat:latest 
+singularity pull gffread.sif library://danifilho/functional_annotation_images/gffread:latest 
+singularity pull hmmer3.sif library://danifilho/functional_annotation_images/hmmer3:latest
+singularity pull iprscan.sif library://danifilho/functional_annotation_images/iprscan:latest
+singularity pull mmseqs2.sif library://danifilho/functional_annotation_images/mmseqs2:latest
+singularity pull multiloc2_v3.img library://danifilho/functional_annotation_images/multiloc2_v3:latest
+singularity pull samtools.sif library://danifilho/functional_annotation_images/samtools:latest
+singularity pull sigtarp.sif library://danifilho/functional_annotation_images/sigtarp:latest
 ```
-
-Alternatively, you can download them directly:
-
-- [agat.sif](https://cloud.sylabs.io/library/danifilho/functional_annotation_images/agat:latest)
-- [gffread.sif](https://cloud.sylabs.io/library/danifilho/functional_annotation_images/gffread:latest)
-- [hmmer3.sif](https://cloud.sylabs.io/library/danifilho/functional_annotation_images/hmmer3:latest)
-- [iprscan.sif](https://cloud.sylabs.io/library/danifilho/functional_annotation_images/iprscan:latest)
-- [mmseqs2.sif](https://cloud.sylabs.io/library/danifilho/functional_annotation_images/mmseqs2:latest)
-- [multiloc2_v3.img](https://cloud.sylabs.io/library/danifilho/functional_annotation_images/multiloc2_v3:latest)
-- [samtools.sif](https://cloud.sylabs.io/library/danifilho/functional_annotation_images/samtools:latest)
-- [sigtarp.sif](https://cloud.sylabs.io/library/danifilho/functional_annotation_images/sigtarp:latest)
 
 ## Installation
 
-1. **Clone the repository**:
-
-   ```bash
-   git clone https://github.com/yourusername/functional-annotation-pipeline.git
-   cd functional-annotation-pipeline
-   ```
-
-2. **Create a Conda environment**:
-
-   ```bash
-   conda create -n functional-annotation-pipeline python=3.8
-   conda activate functional-annotation-pipeline
-   ```
-
-3. **Install required Python packages**:
-
-   ```bash
-   pip install pandas biopython snakemake
-   ```
-
-4. **Ensure Singularity is installed**:
+**Ensure Singularity is installed**:
 
    - Install Singularity following the official [Singularity Installation Guide](https://sylabs.io/guides/3.0/user-guide/installation.html).
-
-5. **Download Singularity images**:
-
-   - Use the commands provided in the [Singularity Images](#singularity-images) section to download all required images.
 
 ## Dependencies
 
@@ -108,19 +74,7 @@ Alternatively, you can download them directly:
 
 ### Python Packages
 
-- **pandas**
 - **biopython**
-
-### External Tools (via Singularity images)
-
-- **AGAT** v1.4.0
-- **gffread** 0.12.7
-- **MMseqs2** 15.6
-- **InterProScan** 5.59
-- **HMMER** 3.3
-- **SignalP** 5.0b
-- **TargetP** 2.0
-- **MultiLoc2** 3.0
 
 ## Input Files
 
