@@ -4,7 +4,6 @@ This pipeline is designed to perform comprehensive functional annotation of geno
 
 ## Table of Contents
 
-- [Overview](#overview)
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
@@ -41,9 +40,6 @@ The Functional Annotation Pipeline automates the process of annotating proteins 
 
 ## Prerequisites
 
-- **Operating System**: Linux (preferred for Singularity support)
-- **Python**: Version 3.6 or higher
-- **Conda**: For managing environments
 - **Snakemake**: Workflow management system
 - **Singularity**: Containerization platform
 
